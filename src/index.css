@@ -12,9 +12,10 @@ body {
 
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  padding: 4rem 2rem;
+  gap: 3rem;
 }
 
 .buttons {
@@ -45,32 +46,26 @@ button:active {
   transform: translateY(0);
 }
 
-.toasts {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+.logs {
+  width: 100%;
+  max-width: 400px;
+  min-height: 200px;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  font-family: 'SF Mono', monospace;
+  font-size: 0.875rem;
+  color: #8be9fd;
+  overflow-y: auto;
+  max-height: 300px;
 }
 
-.toast {
-  padding: 1rem 1.5rem;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  animation: slideIn 0.3s ease;
-  font-weight: 500;
-  color: #1a1a2e;
+.log {
+  padding: 0.25rem 0;
+  animation: fadeIn 0.2s ease;
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
 }

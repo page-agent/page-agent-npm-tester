@@ -1,23 +1,14 @@
 import { useRef, useState } from 'react'
 
-interface Toast {
-	id: number
-	message: string
-}
-
 export default function App() {
-	const [toasts, setToasts] = useState<Toast[]>([])
+	const [logs, setLogs] = useState<string[]>([])
 	const nextId = useRef(0)
 
 	const handleClick = (num: number) => {
-		const id = nextId.current++
-		setToasts((prev) => [
+		setLogs((prev) => [
 			...prev,
-			{ id, message: `Button ${num} clicked!` },
+			`[${++nextId.current}] Button ${num} clicked`,
 		])
-		setTimeout(() => {
-			setToasts((prev) => prev.filter((t) => t.id !== id))
-		}, 2000)
 	}
 
 	return (
@@ -29,10 +20,10 @@ export default function App() {
 					</button>
 				))}
 			</div>
-			<div className="toasts">
-				{toasts.map((toast) => (
-					<div key={toast.id} className="toast">
-						{toast.message}
+			<div className="logs">
+				{logs.map((log, i) => (
+					<div key={i} className="log">
+						{log}
 					</div>
 				))}
 			</div>
