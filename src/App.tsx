@@ -1,11 +1,9 @@
 import { useRef, useState } from 'react'
 import { PageAgent } from 'page-agent'
 
-// Demo server - has rate limit, prompt limit, origin limit
-const DEMO_MODEL = 'PAGE-AGENT-FREE-TESTING-RANDOM'
-const DEMO_BASE_URL =
-	'https://hwcxiuzfylggtcktqgij.supabase.co/functions/v1/llm-testing-proxy'
-const DEMO_API_KEY = 'PAGE-AGENT-FREE-TESTING-RANDOM'
+const DEMO_MODEL = import.meta.env.LLM_MODEL_NAME
+const DEMO_BASE_URL = import.meta.env.LLM_BASE_URL
+const DEMO_API_KEY = import.meta.env.LLM_API_KEY
 
 const agent = new PageAgent({
 	model: DEMO_MODEL,
