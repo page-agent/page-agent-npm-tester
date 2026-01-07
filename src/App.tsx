@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 interface Toast {
 	id: number
@@ -7,16 +7,17 @@ interface Toast {
 
 export default function App() {
 	const [toasts, setToasts] = useState<Toast[]>([])
+	const nextId = useRef(0)
 
 	const handleClick = (num: number) => {
-		const id = Date.now()
+		const id = nextId.current++
 		setToasts((prev) => [
 			...prev,
-			{ id, message: `按钮 ${num} 被点击了！` },
+			{ id, message: `Button ${num} clicked!` },
 		])
 		setTimeout(() => {
 			setToasts((prev) => prev.filter((t) => t.id !== id))
-		}, 5000)
+		}, 2000)
 	}
 
 	return (
