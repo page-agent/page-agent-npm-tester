@@ -10,6 +10,20 @@ const agent = new PageAgent({
 	baseURL: DEMO_BASE_URL,
 	apiKey: DEMO_API_KEY,
 	language: 'zh-CN',
+
+	// test custom fetch
+	customFetch: (input: RequestInfo | URL, init?: RequestInit) => {
+		const controller = new AbortController()
+		const timeoutId = setTimeout(() => controller.abort(), 60000) // 60秒超时
+
+		return fetch(input, {
+			...init,
+			credentials: 'include',
+			signal: controller.signal,
+		}).finally(() => {
+			clearTimeout(timeoutId)
+		})
+	},
 })
 
 export default function App() {
